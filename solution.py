@@ -30,7 +30,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
   #  if recv1[:3] != '250':
    #     print ('250 reply not received from server')
 # Send RCPT TO command and print server response.
-    print ("Sending RCPT TO Command")
+   # print ("Sending RCPT TO Command")
    # rcptToCommand = bytes("RCPT TO: <aa8701@nyu.edu>\r\n", "utf-8")
     clientSocket.send(rcptToCommand)
     recv1 = clientSocket.recv(1024)
