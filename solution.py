@@ -56,6 +56,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
   #  print("Response after sending message body:" + str(recv_msg.decode()))
    # if recv1[:3] != '250':
     #    print('250 reply not received from server.')
+    
+    # Fill in end# Message ends with a single period.
+    mailMessageEnd = '\r\n.\r\n'
+    clientSocket.send(message + mailMessageEnd)
+    recv1 = clientSocket.recv(1024)
+    #print(recv1)
+    #if recv1[:3] != '250':
+        #print('end msg 250 reply not received from server.')
 
     # Send QUIT command and get server response.
     clientSocket.send("QUIT\r\n".encode())
