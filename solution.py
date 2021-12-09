@@ -1,10 +1,11 @@
 from socket import *
-msg = "\r\n I love computer networks!"
-endmsg = "\r\n.\r\n"
 
-# Choose a mail server
-mailServer = 'localhost'
-mailPort = 1025
+
+def smtp_client(port=1025, mailserver='127.0.0.1'):
+    msg = "\r\n My message"
+    endmsg = "\r\n.\r\n"
+
+
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 serverSocket = socket(AF_INET,SOCK_STREAM)
@@ -78,4 +79,4 @@ if recv1[:3] != '250':
     pass
 
 if __name__ == '__main__':
-    main()
+    smtp_client(1025, '127.0.0.1')
