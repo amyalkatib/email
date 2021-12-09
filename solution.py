@@ -2,7 +2,7 @@ from socket import *
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
-    heloCommand = bytes(("HELO Alice\r\n", "utf-8"))
+    
 # Choose a mail server (e.g. Google mail server) and call it mailserver
     mailserver = 'nyu.edu'
     serverport = 1025
@@ -14,6 +14,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     #if recv[:3] != '220':
        # print ('220 reply not received from server.')
 # Send HELO command and print server response.
+    heloCommand = bytes(("HELO Alice\r\n", "utf-8"))
    # print ("Sending First HELO")
     clientSocket.send(heloCommand)
     recv1 = clientSocket.recv(1024)
