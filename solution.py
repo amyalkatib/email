@@ -4,8 +4,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
     heloCommand = bytes("HELO Alice\r\n", "utf-8")
 # Choose a mail server (e.g. Google mail server) and call it mailserver
-    mailserver = "nyu.edu"
-    serverport = 25
+    mailserver = "127.0.0.1"
+    serverport = 1025
 # Create socket called clientSocket and establish a TCP connection with mailserver
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((mailserver, serverport))
