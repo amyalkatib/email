@@ -8,44 +8,36 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
-serverSocket = socket(AF_INET,SOCK_STREAM)
-serverSocket.bind(('localhost',1025))
-serverSocket.listen()
-clientSocket = socket(AF_INET,SOCK_STREAM)
-clientSocket.connect((mailServer, mailPort))
+clientSocket = socket(AF_INET, SOCK_STREAM)
+clientSocket.connect((mailserver, serverport))
 recv = clientSocket.recv(1024)
-#print ('test')
-#print (recv)
-if recv[:3] != '220':
+print (recv)
+#if recv[:3] != '220':
     #print ('220 reply not received from server.')
-
-# Send HELLO command and print server response.
-helloCommand = 'HELO Alice\r\n';
-clientSocket.send(helloCommand)
+# Send HELO command and print server response.
+print ("Sending First HELO")
+clientSocket.send(heloCommand)
 recv1 = clientSocket.recv(1024)
-#print (recv1)
-if recv1[:3] != '250':
+print (recv1)
+#if recv1[:3] != '250':
     #print ('250 reply not received from server.')
-
 # Send MAIL FROM command and print server response.
-command = "STARTTLS\r\n"
-clientSocket.send(command)
-recva = clientSocket.recv(1024)
-#print(recva)
-mailfromCommand = 'MAIL FROM: <mail@mail.com>\r\n.'
-clientSocket.send(mailfromCommand)
+print ("Sending MAIL FROM Command")
+mailFromCommand = bytes("MAIL FROM: <aa8701@nyu.edu>\r\n", "utf-8")
+clientSocket.send(mailFromCommand)
 recv1 = clientSocket.recv(1024)
-#print(recv1)
-if recv1[:3] != '250':
-    #print('mail from 250 reply not received from server.')
-
+print (recv1)
+#if recv1[:3] != '250':
+    #print ('250 reply not received from server')
 # Send RCPT TO command and print server response.
-rcpttoCommand = 'RCPT TO: <myemail@mail.com>\r\n'
-clientSocket.send(rcpttoCommand)
+print ("Sending RCPT TO Command")
+rcptToCommand = bytes("RCPT TO: <aa8701@nyu.edu>\r\n", "utf-8")
+clientSocket.send(rcptToCommand)
 recv1 = clientSocket.recv(1024)
-#print(recv1)
-if recv1[:3] != '250':
-    #print('rcpt to 250 reply not received from server.')
+print (recv1)
+#if recv1[:3] != '250':
+   # print ('250 reply not received from server')
+# Send DATA command and print server response.
 
 # Send DATA command and print server response
 dataCommand = 'Data'
@@ -53,7 +45,7 @@ dataCommand = 'Data'
 clientSocket.send(dataCommand)
 recv1 = clientSocket.recv(1024)
 #print(recv1)
-if recv1[:3] != '250':
+#if recv1[:3] != '250':
     #print('data 250 reply not received from server.')
 
 # Send message data.
@@ -64,7 +56,7 @@ mailMessageEnd = '\r\n.\r\n'
 clientSocket.send(message + mailMessageEnd)
 recv1 = clientSocket.recv(1024)
 #print(recv1)
-if recv1[:3] != '250':
+#if recv1[:3] != '250':
     #print('end msg 250 reply not received from server.')
 
 # Send QUIT command and get server response.
@@ -73,10 +65,10 @@ quitCommand = 'Quit\r\n'
 clientSocket.send(quitCommand)
 recv1 = clientSocket.recv(1024)
 #print(recv1)
-if recv1[:3] != '250':
+#if recv1[:3] != '250':
     #print('quit 250 reply not received from server.')
 
-    pass
+    #pass
 
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
