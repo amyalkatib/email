@@ -6,10 +6,10 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
-
+    mailserver = '127.0.0.1'
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver)
+    clientSocket.connect((mailserver, port))
     # Fill in start
     # Fill in end
 
@@ -37,7 +37,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     RCPTTO = "RCPT TO:<aa8701@nyu.com>\r\n"
     clientSocket.send(RCPTTO.encode())
-r   ecv3 = clientSocket.recv(1024).decode()
+    recv3 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send DATA command and print server response.
